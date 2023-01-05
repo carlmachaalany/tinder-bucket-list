@@ -1,5 +1,5 @@
 
-const API_URL = "http://www.boredapi.com/api/activity/";
+const API_URL = "https://www.boredapi.com/api/activity/";
 
 export class BoredApi {
 

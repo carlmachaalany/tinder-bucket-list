@@ -19,7 +19,11 @@ const Navbar = ({ activeTabState }: any) => {
                     <div className="flex md:order-2">
                         <button onClick={() => setOpenMenu(!openMenu)} type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                             <span className="sr-only">Open main menu</span>
-                            <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
+                            {
+                                !openMenu ? 
+                                <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
+                                : <span className="w-6 h-6 font-bold text-lg">&#10005;</span>
+                            }
                         </button>
                     </div>
                     <div className="ml-auto items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
@@ -41,22 +45,23 @@ const Navbar = ({ activeTabState }: any) => {
                 </div>
             </nav>
             {/* Mobile Menu */}
-            <div className={"fixed h-full z-20 top-0 w-full left-0" + (openMenu ? '' : ' hidden')}>
+            <div className={"fixed h-full z-10 top-0 w-full left-0" + (openMenu ? '' : ' hidden')}>
                 <div className="fixed inset-0 transition-opacity">
                     <div className="absolute inset-0 bg-gray-900 opacity-70" />
                 </div>
                 <div className="h-full w-full flex">
-                    <div className="flex-col m-auto">
-                        <button onClick={() => { activeTabState.setActiveTab(ActiveTab.LogIn) }} className={"w-full mx-auto cursor-pointer transition ease-in-out " + (activeTabState.activeTab === ActiveTab.LogIn ? 'text-blue-500 scale-125' : 'text-white')}>
+                    <span className="fixed right-5 top-5 text-white">Cancel</span>
+                    <div className="flex-col m-auto z-20">
+                        <button onClick={() => { activeTabState.setActiveTab(ActiveTab.LogIn); setOpenMenu(false); }} className={"w-full mx-auto cursor-pointer transition ease-in-out " + (activeTabState.activeTab === ActiveTab.LogIn ? 'text-blue-500 scale-125' : 'text-white')}>
                             Account
                         </button><br />
-                        <button onClick={() => { activeTabState.setActiveTab(ActiveTab.Swiping) }} className={"mt-7 w-full mx-auto cursor-pointer transition ease-in-out " + (currentUser ? '' : 'hidden ') + (activeTabState.activeTab === ActiveTab.Swiping ? 'text-blue-500 scale-125' : 'text-white')}>
+                        <button onClick={() => { activeTabState.setActiveTab(ActiveTab.Swiping); setOpenMenu(false);  }} className={"mt-7 w-full mx-auto cursor-pointer transition ease-in-out " + (currentUser ? '' : 'hidden ') + (activeTabState.activeTab === ActiveTab.Swiping ? 'text-blue-500 scale-125' : 'text-white')}>
                             Swiping
                         </button><br />
-                        <button onClick={() => { activeTabState.setActiveTab(ActiveTab.BucketList) }} className={"mt-7 w-full mx-auto cursor-pointer transition ease-in-out " + (currentUser ? '' : 'hidden ') + (activeTabState.activeTab === ActiveTab.BucketList ? 'text-blue-500 scale-125' : 'text-white')}>
+                        <button onClick={() => { activeTabState.setActiveTab(ActiveTab.BucketList); setOpenMenu(false);  }} className={"mt-7 w-full mx-auto cursor-pointer transition ease-in-out " + (currentUser ? '' : 'hidden ') + (activeTabState.activeTab === ActiveTab.BucketList ? 'text-blue-500 scale-125' : 'text-white')}>
                             My Bucket List
                         </button><br />
-                        <button onClick={() => { activeTabState.setActiveTab(ActiveTab.KanbanBoard) }} className={"mt-7 w-full mx-auto cursor-pointer transition ease-in-out " + (currentUser ? '' : 'hidden ') + (activeTabState.activeTab === ActiveTab.KanbanBoard ? 'text-blue-500 scale-125' : 'text-white')}>
+                        <button onClick={() => { activeTabState.setActiveTab(ActiveTab.KanbanBoard); setOpenMenu(false);  }} className={"mt-7 w-full mx-auto cursor-pointer transition ease-in-out " + (currentUser ? '' : 'hidden ') + (activeTabState.activeTab === ActiveTab.KanbanBoard ? 'text-blue-500 scale-125' : 'text-white')}>
                             My Kanban Board
                         </button><br />
                     </div>
